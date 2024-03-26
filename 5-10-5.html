@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Кредитный калькулятор</title>
+</head>
+<body>
+    <ul>
+        <li>если клиенту нет 18 лет, то кредит он не получит</li>
+        <li>если клиенту от 18 до 21, то он может получить максимум 50000</li>
+        <li>если клиенту от 22 до 35, то он сможет получить максимум 400000</li>
+        <li>если клиенту от 36 до 65, то ему одобрят максимум 1000000</li>
+        <li>кредит могут выдавать суммами кратными 10000.</li>
+    </ul>
+    <script>
+        let userAge = +prompt("Введите ваш возраст:");
+         let maxSum;
+        if (!userAge || isNaN(userAge)) {
+            alert("Возраст должен быть числом!");
+        } else {
+           
+            if (userAge <= 21 && userAge >= 18) {
+                maxSum = 50000;
+            } else if (userAge <= 35 && userAge > 21) {
+                maxSum = 400000;
+            } else if (userAge <= 65 && userAge >35) {
+                maxSum = 1000000;
+            } else {
+                alert("Вы не можете получить кредит");
+                maxSum = 0;
+            }
+        }
+
+            if (maxSum > 0) {
+                let userSum = +prompt(`Вам может быть одобрено максимум ${maxSum}. Введите сумму:`);
+                if (userSum > maxSum) {
+                    alert(`Сумма превышает максимально допустимый лимит. Вам может быть одобрено ${maxSum}`);
+                } else {
+                    if (userSum % 1000 !== 0) {
+                        alert(`Вы ввели сумму, не кратную 1000. Вам может быть одобрено ${Math.floor(userSum / 1000) * 1000}`);
+                    } else {
+                        alert(`Вам может быть одобрено ${Math.floor(userSum / 1000) * 1000}`);
+                    }
+                }
+            }
+        
+    </script>
+</body>
+</html>
